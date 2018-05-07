@@ -12,6 +12,7 @@ To run the tutorial, follow these steps:
 Pkg.add("Cxx")
 Pkg.add("CxxWrap")
 Pkg.add("IJulia")
+Pkg.add("BenchmarkTools")
 ```
 3. Start the local notebook server
 ```julia

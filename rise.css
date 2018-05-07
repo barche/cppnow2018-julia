@@ -1,8 +1,7 @@
-code.cm-s-ipython {
-    font-size: 0.65em;
+.rise-enabled code.cm-s-ipython {
+    font-size: 60%;
     line-height: 105%
 }
-
-table th, table td {
-    font-size: 3em;
+.rise-enabled table th, table td {
+    font-size: 160%;
 }
