@@ -32,10 +32,26 @@ private:
   T2 m_y;
 };
 
+template<typename T, int I>
+class NonType
+{
+public:
+  NonType(const T x) : m_x(x) {}
+  T compute() const { return I*m_x; }
+private:
+  T m_x;
+};
+
 namespace jlcxx
 {
   // Needed for automatic downcast
   template<> struct SuperType<TwiceA> { typedef A type; };
+  
+  template<typename T, int I>
+  struct BuildParameterList<NonType<T, I>>
+  {
+    typedef ParameterList<T, std::integral_constant<int, I>> type;
+  };
 }
 
 JULIA_CPP_MODULE_BEGIN(registry)
@@ -69,6 +85,14 @@ JULIA_CPP_MODULE_BEGIN(registry)
     wrapped.template constructor<x_type,y_type>();
     wrapped.method("get_x", &WrappedT::get_x);
     wrapped.method("get_y", &WrappedT::get_y);
+  });
+
+  mod.add_type<jlcxx::Parametric<jlcxx::TypeVar<1>, jlcxx::TypeVar<2>>>("NonType")
+    .apply<NonType<double, 2>>([](auto wrapped)
+  {
+    typedef typename decltype(wrapped)::type WrappedT;
+    wrapped.template constructor<double>();
+    wrapped.method("compute", &WrappedT::compute);
   });
 
   mod.method("smartA", [] (int x) { return std::make_shared<A>(x); } );

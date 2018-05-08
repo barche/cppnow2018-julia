@@ -9,10 +9,10 @@ To run the tutorial, follow these steps:
 1. Install Julia from http://julialang.org
 2. From the Julia REPL, install the required packages:
 ```julia
-Pkg.add("Cxx")
 Pkg.add("CxxWrap")
 Pkg.add("IJulia")
 Pkg.add("BenchmarkTools")
+Pkg.add("Cxx") (warning: may take a long time)
 ```
 3. Start the local notebook server
 ```julia
