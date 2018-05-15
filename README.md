@@ -19,3 +19,15 @@ Pkg.add("Cxx") (warning: may take a long time)
 using IJulia
 notebook()
 ```
+
+You may also need to get the master version of `Cxx`, i.e:
+```julia
+Pkg.checkout("Cxx")
+Pkg.build("Cxx")
+```
+
+## Tutorials
+In the tutorials dir, the following is available:
+* eigen3: C++ source code of the [Eigen](http://eigen.tuxfamily.org) header-only matrix library
+* cxx: Notebook on how to use the Eigen library using Cxx.jl
+* cxxwrap: Basic tutorials (`hello_world` and `types`) plus a tutorial on using Eigen from CxxWrap.jl
